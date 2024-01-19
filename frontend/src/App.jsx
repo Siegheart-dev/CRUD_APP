@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import Table from './components/Table'
-import TodoForm from './components/TodoForm'
+import ImageForm from './components/ImageForm'
 import axios from 'axios'
 
 
 function App() {
 
-  const [todos, setTodos] = useState("")
+  const [images, setImages] = useState("")
   const [isLoading, setisLoading] = useState(true)
 
 
@@ -17,8 +17,8 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/todo');
-      setTodos(response.data)
+      const response = await axios.get('http://127.0.0.1:8000/api/image');
+      setImages(response.data)
       setisLoading(false)
     } catch (error) {
       console.log(error);
@@ -33,14 +33,14 @@ function App() {
         <h1 className=' text-5xl text-center pb-8'>IMAGE STORAGE </h1>
       </nav>
       {/* Body */}
-      <TodoForm
-        setTodos={setTodos}
+      <ImageForm
+        setImages={setImages}
         fetchData={fetchData}
       />
       <Table
-        todos={todos}
+        images={images}
         isLoading={isLoading}
-        setTodos={setTodos} />
+        setImages={setImages} />
     </div>
   )
 }

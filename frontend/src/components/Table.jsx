@@ -2,16 +2,16 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { MdOutlineDeleteOutline, MdEditNote, MdOutlineCheckBox, MdOutlineCheckBoxOutlineBlank } from 'react-icons/md';
 
-const Table = ({ todos, isLoading, setTodos }) => {
+const Table = ({ images, isLoading, setImages }) => {
   const [editText, setEditText] = useState({
     'body': ''
   });
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/todo/${id}/`);
-      const newList = todos.filter(todo => todo.id !== id);
-      setTodos(newList);
+      await axios.delete(`http://127.0.0.1:8000/api/image/${id}/`);
+      const newList = images.filter(image => image.id !== id);
+      setImages(newList);
     } catch (error) {
       console.log(error);
     }
@@ -19,10 +19,10 @@ const Table = ({ todos, isLoading, setTodos }) => {
 
   const handleEdit = async (id, value) => {
     try {
-      const response = await axios.patch(`http://127.0.0.1:8000/api/todo/${id}/`, value);
+      const response = await axios.patch(`http://127.0.0.1:8000/api/image/${id}/`, value);
       console.log(response.data);
-      const newTodos = todos.map(todo => todo.id === id ? response.data : todo);
-      setTodos(newTodos);
+      const newImages = images.map(image => image.id === id ? response.data : image);
+      setImages(newImages);
     } catch (error) {
       console.log(error);
     }
@@ -93,30 +93,30 @@ const Table = ({ todos, isLoading, setTodos }) => {
         </thead>
         <tbody>
           {isLoading ? <div>Is Loading </div> :
-            <> {todos.map((todoItem, index) => (
-              <tr key={todoItem.id} className='border-b border-black'>
+            <> {images.map((imageItem, index) => (
+              <tr key={imageItem.id} className='border-b border-black'>
                 <td className='p-3'>
-                  <span onClick={() => handleCheckbox(todoItem.id, todoItem.completed)}
+                  <span onClick={() => handleCheckbox(imageItem.id, imageItem.completed)}
                     className='inline-block cursor-pointer'>
-                    {todoItem.completed === true ? <MdOutlineCheckBox /> : <MdOutlineCheckBoxOutlineBlank />}
+                    {imageItem.completed === true ? <MdOutlineCheckBox /> : <MdOutlineCheckBoxOutlineBlank />}
                   </span>
                 </td>
-                <td className='p-3 text-sm ' title={todoItem.id}>{todoItem.body}</td>
+                <td className='p-3 text-sm ' title={imageItem.id}>{imageItem.body}</td>
                 <td className='p-3 text-sm text-center'>
-                  <span className={`p-1.5 text-xs font-medium tracking-wider rounded-md ${todoItem.completed ? 'bg-green-300' : 'bg-red-300'}`}>
-                    {todoItem.completed ? 'In Stock' : 'Selled'}
+                  <span className={`p-1.5 text-xs font-medium tracking-wider rounded-md ${imageItem.completed ? 'bg-green-300' : 'bg-red-300'}`}>
+                    {imageItem.completed ? 'In Stock' : 'Selled'}
                   </span>
                 </td>
-                <td className='p-3 text-sm font-medium'>{new Date(todoItem.created).toLocaleString()}</td>
+                <td className='p-3 text-sm font-medium'>{new Date(imageItem.created).toLocaleString()}</td>
                 <td className='p-3 text-sm font-medium grid grid-flow-col items-center mt-5 '>
                   <span>
-                    <label htmlFor="my-modal" ><MdEditNote onClick={() => setEditText({ ...todoItem, id: todoItem.id })} className=' text-xl cursor-pointer' /></label>
+                    <label htmlFor="my-modal" ><MdEditNote onClick={() => setEditText({ ...imageItem, id: imageItem.id })} className=' text-xl cursor-pointer' /></label>
                   </span>
-                  <span className=' text-xl cursor-pointer'><MdOutlineDeleteOutline onClick={() => handleDelete(todoItem.id)} /></span>
+                  <span className=' text-xl cursor-pointer'><MdOutlineDeleteOutline onClick={() => handleDelete(imageItem.id)} /></span>
                 </td>
                 <td className='Image text-xl cursor-pointer'>
-                  {todoItem.upload && (
-                    <img src={todoItem.upload} alt="Image" width="150" height="150" />
+                  {imageItem.upload && (
+                    <img src={imageItem.upload} alt="Image" width="150" height="150" />
                   )}
                 </td>
               </tr>

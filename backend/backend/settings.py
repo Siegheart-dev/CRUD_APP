@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'todo',
+    'image',
 
 ]
 
@@ -126,7 +126,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # Define the MEDIA_ROOT setting
-MEDIA_ROOT = os.path.join(BASE_DIR, 'todo', 'uploads', 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'image', 'uploads', 'media')
 
 # Define the MEDIA_URL setting
 MEDIA_URL = '/media/'
