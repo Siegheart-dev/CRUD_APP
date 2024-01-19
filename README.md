@@ -15,25 +15,27 @@ This project is made to show CRUD operations, fething data between Frontend and 
 - Tailwind CSS
 - Django
 
-## Local Development
+## Local Development (steps assuming you already installed django and react)
 
 ### Frontend (React with Vite)
 
 1. Navigate to the `frontend` and install npm using this commands in order.
 
-   cd frontend
-   npm install
-   npm run dev
+   1. cd frontend
+   2. npm install
+   3. npm run dev
 
 
 ### Backend(Django)
 
-2. Navigate to the `backend` directory and make migrations using this commands.
+2. Navigate to the `backend` directory and make env / migrations using this commands.
 
-   cd backend
-   python manage.py makemigrations
-   python manage.py migrate
-   python manage.py runserver
+   1. cd backend
+   2. -m vevn env
+   3. source env/Scripts/activate
+   4. python manage.py makemigrations
+   5. python manage.py migrate
+   6. python manage.py runserver
 
 
 ## For future development:
