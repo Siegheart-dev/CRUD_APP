@@ -1,3 +1,4 @@
 .env
 CRUD_ImageCollector/
 _pycache_
+env/
